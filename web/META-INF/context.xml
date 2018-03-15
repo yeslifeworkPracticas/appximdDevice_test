@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/LoginTest">
+<Resource name="DBConnection" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" 
+		username="root" password="root" driverClassName="com.mysql.jdbc.Driver" 
+		url="jdbc:mysql://192.168.1.53:3306/bd_data?zeroDateTimeBehavior=convertToNull" />
+</Context>
+<!--  jdbc:mysql://localhost:33340/test -->

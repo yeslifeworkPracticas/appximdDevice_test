@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+        <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+        <title>Registrarse</title>
+
+        <!-- Favicons-->
+        <link rel="icon" href="images/favicon/YesLifeWork.jpg" sizes="32x32">
+        <!-- Favicons-->
+        <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
+        <!-- For iPhone -->
+        <meta name="msapplication-TileColor" content="#00bcd4">
+        <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+        <!-- For Windows Phone -->
+
+
+        <!-- CORE CSS-->
+        <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen">
+        <link href="css/estilo-principal.css" type="text/css" rel="stylesheet" media="screen">
+        <link href="css/centrar-pagina.css" type="text/css" rel="stylesheet" media="screen">
+        <link href="css/register-style.css" type="text/css" rel="stylesheet" media="screen">
+
+    </head>
+
+    <body class="corporative-Orange" onload="onLoad()">
+        <div id="register-page" class="row">
+            <div class="col s12 z-depth-4 card-panel">
+                <form class="register-form" action="Register" method="POST" role="form">
+                    <div class="row">
+                        <div class="input-field col s12 center">
+                            <h4>Registro</h4>
+                        </div>
+                    </div>
+                    <p id="error_register"></p>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-social-person-outline prefix"></i>
+                            <input name="username" id="username" type="text"
+                                   required>
+                            <label for="username" class="center-align">Usuario</label>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-communication-email prefix"></i>
+                            <input name="email" id="email" type="email"
+                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                   required>
+                            <label for="email" class="center-align">Email</label>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            <input name="password" id="password" type="password"
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                                   title="Debe contener al menos un número, una letra mayúscula y una minúscula, y tener al menos 8 o más caracteres" 
+                                   required>
+                            <label for="password">Contraseña</label>
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            <input name="password-again" id="password-again" type="password" oninput="check(this)" required>
+                            <label for="password-again">Repita la contraseña</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <div class="input-field col s12">
+                                <button type="submit" id="register-submit" class="btn waves-effect waves-light col s12">Registrarse</button>
+                            </div>
+                        </div>
+                        <div class="input-field col s12">
+                            <p class="margin center medium-small sign-up">¿Ya tienes una cuenta? <a href="index.html">Inicia Sesión</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <!-- ================================================
+          Scripts
+          ================================================ -->
+
+        <!-- jQuery Library -->
+        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+        <!--materialize js-->
+        <script type="text/javascript" src="js/materialize.js"></script>
+
+        <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+        <script type="text/javascript" src="js/plugins.js"></script>
+        <script language='javascript' type='text/javascript'>
+        function check(input) {
+            if (input.value != document.getElementById('password').value) {
+                input.setCustomValidity('Las contraseñas no coinciden');
+            } else {
+                // input is valid -- reset the error message
+                input.setCustomValidity('');
+            }
+        }
+        </script>
+
+        <script>
+            function onLoad() {
+                document.getElementById("error_register").innerHTML = "";
+                var error_register;
+                var error_register = getCookie("error_register");
+                deleteCookie("error_register");
+
+                if (typeof error_register == 'undefined') {
+                    error_register = "";
+                } else {
+                    error_register = error_register.substring(1, error_register.length - 1);
+                }
+
+                document.getElementById("error_register").innerHTML = error_register;
+            }
+
+            function getCookie(name) {
+                var value = "; " + document.cookie;
+                var parts = value.split("; " + name + "=");
+                if (parts.length == 2) {
+                    return parts.pop().split(";").shift();
+                }
+            }
+
+            function deleteCookie(name) {
+                document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+        </script>
+
+    </body>
+
+</html>
