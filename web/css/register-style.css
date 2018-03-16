@@ -12,7 +12,10 @@ and open the template in the editor.
 .corporative-Orange {
     background-color: #d0732a !important; 
 }
-
+.icon-format{
+    font-size: 36px !important;
+    line-height: inherit !important; 
+}
 /*Botón login hover*/
 .btn:hover, .btn-large:hover {
     background-color: #9a5dab!important;

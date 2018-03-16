@@ -15,7 +15,7 @@ and open the template in the editor.
 
 /*Botón login*/
 .btn {
-    margin-left: 42% !important;
+  margin-left: 15% !important;
 }
 /*Botón login hover*/
 .btn:hover, .btn-large:hover {
@@ -24,7 +24,7 @@ and open the template in the editor.
 
 /*Botón google login*/
 .g-signin2 {
-    margin-left: 53% !important;
+    margin-left: 30% !important;
 }
 
 /*Color idiomas*/
@@ -36,9 +36,11 @@ and open the template in the editor.
     color: rgba(0,0,0,0.5);
     background-color: transparent;
 }
-/*Iconos de user y password*/
+/*Iconos */
 .icon-color {
     color: #7b3e8c;
+    font-size: 36px !important;
+    line-height: inherit !important; 
 }
 /*Recuperar y registrar*/
 .text-color {
