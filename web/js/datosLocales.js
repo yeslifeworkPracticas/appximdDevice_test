@@ -59,8 +59,19 @@ function datosLocales() {
         OSName = "UNIX";
     if (window.navigator.userAgent.indexOf("Linux") != -1)
         OSName = "Linux";
-    if (window.navigator.userAgent.indexOf("Android") != -1)
-        OSName = "Android";
+    if (window.navigator.userAgent.indexOf("Android 3.0") != -1)
+        OSName = "Honeycomb Sandwich Android";
+    if (window.navigator.userAgent.indexOf("Android 4.0") != -1)
+        OSName = "Ice Cream Sandwich Android";
+    if (window.navigator.userAgent.indexOf("Android 5.0") != -1)
+        OSName = "Lollipop Android";
+    if (window.navigator.userAgent.indexOf("Android 6.0") != -1)
+        OSName = "Marshmallow Android";
+    if (window.navigator.userAgent.indexOf("Android 7.0") != -1)
+        OSName = "Nougat Android";
+    if (window.navigator.userAgent.indexOf("Android 8.0") != -1)
+        OSName = "Oreo Android";
+    
 
     document.forms['reg']['fecha'].value = "Fecha:     " + fecha;
     document.forms['reg']['so'].value = "Sistema Operativo:   " + OSName;
