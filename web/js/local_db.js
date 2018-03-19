@@ -64,7 +64,27 @@ function mostrarDatos() {
             var row = result.rows.item(0);
             //alert("alias: "+row["alias"]);
             document.forms['login']['alias_device'].value = row["alias"];
+            //var select = document.getElementById(seleccionar)
+           // var fecha_lista, so_lista, nav_lista;
 
+
+           // fecha_lista = row["fecha"];
+            //so_lista = row["so"];
+           // nav_lista = row["nav"];
+            //var array = [fecha_lista,so_lista,nav_lista];
+            //cargarDatos("seleccionar",array);
+
+
+            //var select = document.getElementsByName("seleccionar");
+            //for (value in array) {
+             //   var option = document.createElement("option");
+            //    option.text = fecha_lisa;
+             //   select.add(option);
+            //}
+
+            /*document.forms['login']['fecha'].value = row["fecha"];
+             document.forms['login']['so'].value = row["so"];
+             document.forms['login']['navegador'].value = row["nav"];*/
 
             /*var notediv = document.createElement('div');
              notediv.innerHTML = 'fecha: ' + row['fecha'] + ', so: ' + row['so'] + ', nav ' + row['navegador'] + ', alias ' + row['alias'];
@@ -76,6 +96,20 @@ function mostrarDatos() {
         });
     });
 }
+
+
+/*function cargarDatos(domElement, array) {
+
+    var select = document.getElementsByName(domElement)[0];
+    for (value in array) {
+        var option = document.createElement("option");
+        option.text = array[value];
+        select.add(option);
+    }
+
+
+}*/
+
 function borrarRegistro() {
     db.transaction(function (tx) {
         tx.executeSql('DELETE FROM device WHERE alias = ?', [document.querySelector("#alias").value]);
