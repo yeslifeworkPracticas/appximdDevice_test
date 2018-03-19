@@ -27,9 +27,11 @@
         <link href="css/register-style.css" type="text/css" rel="stylesheet" media="screen">
         <!-- scripts -->
         <script src="js/datosLocales.js" type="text/javascript"></script>
+        <script src="js/local_db.js" type="text/javascript"></script>
+
     </head>
 
-    <body class="corporative-Orange" onload="datosLocales();open();">
+    <body class="corporative-Orange" onload="datosLocales();">
         <div id="register-page" class="row">
             <div class="col s12 z-depth-4 card-panel">
                 <form  name="reg" class="register-form" action="Register" method="POST" role="form">
@@ -41,27 +43,27 @@
                     <p id="error_register"></p>
                     <div class="row margin">
                         <div class="input-field col s12">
-                            
+
                             <i class="material-icons md-48 icon-format prefix">radio_button_checked</i>
-                            
+
                             <input name="fecha" id="fecha" type="text" required readonly>
-                           
+
                         </div>
-                        
+
                     </div>
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons md-48 icon-format prefix">radio_button_checked</i>
                             <input  name="so" id="so" type="text" required readonly>
-                            
+
                         </div>
                     </div>
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons md-48 icon-format prefix">radio_button_checked</i>
                             <input name="nav" id="nav" type="text" required readonly>
-                            
-                            
+
+
                         </div>
                     </div>
                     <div class="row margin">
@@ -74,7 +76,7 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <div class="input-field col s12">
-                                <button  onclick="crearTabla(); crearRegistro(); window.open('index.html'); " class="btn waves-effect waves-light col s12">NEW DISPOSITIVO</button>
+                                <button onclick="open_registro();crearTabla();crearRegistro();" class="btn waves-effect waves-light col s12">NEW DISPOSITIVO</button>
                             </div>
                         </div>
                     </div>
@@ -93,18 +95,18 @@
         <!--plugins.js - Some Specific JS codes for Plugin Settings-->
         <script type="text/javascript" src="js/plugins.js"></script>
         <script language='javascript' type='text/javascript'>
-        function check(input) {
-            if (input.value != document.getElementById('password').value) {
-                input.setCustomValidity('Las contraseñas no coinciden');
-            } else {
-                // input is valid -- reset the error message
-                input.setCustomValidity('');
-            }
-        }
+                                   /* function check(input) {
+                                        if (input.value != document.getElementById('password').value) {
+                                            input.setCustomValidity('Las contraseñas no coinciden');
+                                        } else {
+                                            // input is valid -- reset the error message
+                                            input.setCustomValidity('');
+                                        }
+                                    }*/
         </script>
 
         <script>
-            function onLoad() {
+            /*function onLoad() {
                 document.getElementById("error_register").innerHTML = "";
                 var error_register;
                 var error_register = getCookie("error_register");
@@ -129,46 +131,7 @@
 
             function deleteCookie(name) {
                 document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            }
-        </script>
-        <script>
-            var d = new Date();
-            var dia = d.getDate();
-            var mes = d.getMonth();
-            var año = d.getFullYear();
-            mes += 1;
-            if (mes < 10)
-                mes = "0" + mes;
-            var fecha = dia + "/" + mes + "/" + año;
-
-            var OSName = "Desconocido";
-            if (navigator.appVersion.indexOf("Win") !== -1) {
-                OSName = "Windows";
-            } else if (navigator.appVersion.indexOf("Mac") !== -1) {
-                OSName = "MacOS";
-            } else if (navigator.appVersion.indexOf("Linux") !== -1) {
-                OSName = "Linux";
-            } else if (navigator.appVersion.indexOf("Android") !== -1) {
-                OSName = "Android";
-            } else {
-                OSName = "Otros";
-            }
-            var navegador = "";
-            if (navigator.userAgent.search("Chrome") >= 0) {
-                navegador = "Chrome";
-            }
-            if (navigator.userAgent.search("Firefox") >= 0) {
-                navegador = "Firefox";
-            }
-            if (navigator.userAgent.search("MSIE") >= 0) {
-                navegador = "Internet Explorer";
-            }
-            if (navigator.userAgent.search("Opera") >= 0) {
-                navegador = "Opera";
-            }
-            if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
-                navegador = "Safari";
-            }
+            }*/
         </script>
     </body>
 

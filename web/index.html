@@ -52,7 +52,7 @@
 
         <div id="login-page" class="row">
             <div class="col s12 z-depth-4 card-panel">
-                <form class="login-form" method="POST" role="form">
+                <form name="login" class="login-form" method="POST" role="form">
                     <div class="row">
                         <div class="input-field col s12 center">
                             <img src="images/YesLifeWork.jpg" alt="" class="responsive-img valign">
@@ -62,8 +62,8 @@
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons md-48 prefix icon-color">laptop</i>
-                            <input type="text" disabled="disabled">
-                            <label for="username_or_email" class="center-align">Alias Device</label>
+                            <input type="text" id="alias_device" readonly>
+                            
                         </div>
                     </div>
                     <div class="row margin">
