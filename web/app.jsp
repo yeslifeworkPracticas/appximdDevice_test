@@ -116,7 +116,7 @@
                                         <li class="divider"></li>
                                         <li><a href="#"><i class="mdi-action-lock-outline"></i>Bloqueo</a>
                                         </li>-->
-                                        <li><a href="index.html" onclick="signOut()"><i class="mdi-hardware-keyboard-tab"></i>Salir</a>
+                                        <li><a href="index1.html" onclick="signOut()"><i class="mdi-hardware-keyboard-tab"></i>Salir</a>
                                         </li>
                                     </ul>
                                     <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" id="username" data-activates="profile-dropdown">Usuario<i class="mdi-navigation-arrow-drop-down right"></i></a>
