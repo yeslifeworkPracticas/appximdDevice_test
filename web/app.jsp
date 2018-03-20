@@ -1,13 +1,9 @@
-<%-- 
-    Document   : app
-    Created on : Mar 12, 2018, 12:19:06 PM
-    Author     : user
---%>
 <%@page import="java.sql.*"%>
 <%@page import="servlets.*"%>
 <%@page import="java.io.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    Class.forName("com.mysql.jdbc.Driver");
     DDBBConnection conn = new DDBBConnection();
     Connection server;
     server = conn.connnectDatos();
