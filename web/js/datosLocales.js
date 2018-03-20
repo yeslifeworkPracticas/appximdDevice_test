@@ -73,9 +73,9 @@ function datosLocales() {
         OSName = "Oreo Android";
     
 
-    document.forms['reg']['fecha'].value = "Fecha:     " + fecha;
-    document.forms['reg']['so'].value = "Sistema Operativo:   " + OSName;
-    document.forms['reg']['nav'].value = "Navegador:     " + navegador;
+    document.forms['reg']['fecha'].value = "Fecha: " + fecha;
+    document.forms['reg']['so'].value = "S.O: " + OSName;
+    document.forms['reg']['nav'].value = "Navegador: " + navegador;
 }
 
 
