@@ -1,3 +1,5 @@
+/* global value */
+var value;
 var db = null;
 function open_registro() {
     db = openDatabase("BD", "1.0", "HTML5 SQLITE Example", 200000);
@@ -96,18 +98,16 @@ function mostrarDatos() {
         });
     });
 }
-
-
-/*function cargarDatos(domElement, array) {
+/*
+function cargarDatos(domElement, array) {
 
     var select = document.getElementsByName(domElement)[0];
     for (value in array) {
         var option = document.createElement("option");
+        option.value= value;
         option.text = array[value];
         select.add(option);
     }
-
-
 }*/
 
 function borrarRegistro() {
