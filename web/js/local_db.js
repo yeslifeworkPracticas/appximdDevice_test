@@ -50,7 +50,7 @@ function crearTabla() {
 function crearRegistro() {
     db.transaction(function (tx) {
         tx.executeSql("insert into device values(?,?,?,?) ", [document.querySelector("#fecha").value, document.querySelector("#so").value, document.querySelector("#nav").value, document.querySelector("#alias").value]);
-        document.location.replace("index.html");
+        document.location.replace("index.jsp");
     });
     //alert('Registro insertado');
 }

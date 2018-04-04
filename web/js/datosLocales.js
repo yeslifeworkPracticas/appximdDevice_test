@@ -71,11 +71,11 @@ function datosLocales() {
         OSName = "Nougat Android";
     if (window.navigator.userAgent.indexOf("Android 8.0") != -1)
         OSName = "Oreo Android";
-    
 
-    document.forms['reg']['fecha'].value = "Fecha: " + fecha;
-    document.forms['reg']['so'].value = "S.O: " + OSName;
-    document.forms['reg']['nav'].value = "Navegador: " + navegador;
+
+    document.forms['reg']['fecha'].value = fecha;
+    document.forms['reg']['so'].value = OSName;
+    document.forms['reg']['nav'].value = navegador;
 }
 
 
