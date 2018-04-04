@@ -20,7 +20,7 @@ public class DDBBConnection {
         String DB_USER = "user";
         String DB_PASSWD = "user";
         return DriverManager.getConnection(DB_URL,DB_USER,DB_PASSWD);
-        
+ 
     }
     public Connection connnectDevices() throws SQLException{
         String DB_URL = "jdbc:mysql://192.168.1.53:3306/ximddevices";
