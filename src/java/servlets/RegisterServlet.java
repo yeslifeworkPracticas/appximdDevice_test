@@ -22,16 +22,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author User
  */
-@WebServlet("/Register")
+@WebServlet("/a")
 public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String usuario = request.getParameter("username");
-        String password = request.getParameter("email");
-        String email = request.getParameter("password");
+        String fecha = request.getParameter("fecha");
+        String so = request.getParameter("so");
+        String nav = request.getParameter("nav");
+        String alias = request.getParameter("alias");
 
         Connection conn = null;
         ResultSet register = null;
@@ -39,30 +40,30 @@ public class RegisterServlet extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             DDBBConnection DDBB = new DDBBConnection();
-            conn = DDBB.connnectDatos();
+            conn = DDBB.connnectDevices();
 
-            String myQuerySearchStr = "SELECT * FROM users WHERE user = ? OR e-mail = ?";
+            String myQuerySearchStr = "SELECT * FROM ximddevice WHERE alias = ? ";
             myQuery = conn.prepareStatement(myQuerySearchStr);
-            myQuery.setString(1, usuario);
-            myQuery.setString(2, email);
+            myQuery.setString(1, alias);
             register = myQuery.executeQuery();
 
             if (register.absolute(1)) {
                 RequestDispatcher rd = request.getRequestDispatcher("registro.html");
-                Cookie error = new Cookie("error_register", "Esa cuenta de usuario ya esta en uso. Prueba con otra");
+                Cookie error = new Cookie("error_register", "Dispositivo ya registrado");
                 response.addCookie(error);
                 response.sendRedirect("registro.html");
                 rd.include(request, response);
             } else {
-                String myQueryInsertStr = "INSERT INTO users (e-mail, pass, user) VALUES (?, ?, ?)";
+                String myQueryInsertStr = "INSERT INTO ximddevice (alias, so, navegador, fecha) VALUES (?, ?, ?, ?)";
                 myQuery = conn.prepareStatement(myQueryInsertStr);
-                myQuery.setString(1, email);
-                myQuery.setString(2, password);
-                myQuery.setString(3, usuario);
+                myQuery.setString(1, alias);
+                myQuery.setString(2, so);
+                myQuery.setString(3, nav);
+                myQuery.setString(3, fecha);
                 myQuery.executeUpdate();
-                Cookie username = new Cookie("username", usuario);
-                response.addCookie(username);
-                response.sendRedirect("app.html");
+                /*Cookie username = new Cookie("username", usuario);
+                response.addCookie(username);*/
+                response.sendRedirect("app.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,6 +1,7 @@
 /* global value */
 var value;
 var db = null;
+var ws;
 function open_registro() {
     db = openDatabase("BD", "1.0", "HTML5 SQLITE Example", 200000);
 
@@ -42,14 +43,16 @@ function LoadDB() {
 
 function crearTabla() {
     db.transaction(function (tx) {
-        tx.executeSql("create table device(fecha TEXT, so TEXT, nav TEXT, alias TEXT UNIQUE)", [], function (result) {});
+        tx.executeSql("create table device(id TEXT, fecha TEXT, so TEXT, nav TEXT, alias TEXT UNIQUE)", [], function (result) {});
     });
     //alert('tabla creada');
 }
 
-function crearRegistro() {
+function crearRegistro(id, fecha, so, nav, alias) {
     db.transaction(function (tx) {
-        tx.executeSql("insert into device values(?,?,?,?) ", [document.querySelector("#fecha").value, document.querySelector("#so").value, document.querySelector("#nav").value, document.querySelector("#alias").value]);
+        tx.executeSql("insert into device values(?,?,?,?,?) ", [id, fecha, so, nav, alias]
+                /*[document.querySelector("#fecha").value, document.querySelector("#so").value, document.querySelector("#nav").value, document.querySelector("#alias").value]*/
+                );
         document.location.replace("index.html");
     });
     //alert('Registro insertado');
@@ -110,23 +113,50 @@ function mostrarDatos() {
     });
 }
 /*
-function cargarDatos(domElement, array) {
+ function cargarDatos(domElement, array) {
+ 
+ var select = document.getElementsByName(domElement)[0];
+ for (value in array) {
+ var option = document.createElement("option");
+ option.value= value;
+ option.text = array[value];
+ select.add(option);
+ }
+ }*/
 
-    var select = document.getElementsByName(domElement)[0];
-    for (value in array) {
-        var option = document.createElement("option");
-        option.value= value;
-        option.text = array[value];
-        select.add(option);
-    }
-}*/
+function conexion() {
+    ws = new WebSocket("ws://192.162.1.53:8084/WebSocketChat/wschat");
 
-function borrarRegistro() {
-    db.transaction(function (tx) {
-        tx.executeSql('DELETE FROM device WHERE alias = ?', [document.querySelector("#alias").value]);
-    }, function () {
-    }, function () {
-    });
-    //alert('Registro borrado');
+    ws.onopen = function () {
+    };
+
+    ws.onmessage = function (message) {
+        alert(message);
+        open_registro();
+        crearTabla();
+        
+        var id;
+        var fecha;
+        var so;
+        var nav;
+        var alias;
+
+        crearRegistro(id, fecha, so, nav, alias);
+    };
+    return ws;
 }
-            
+
+function postToServer() {
+
+    var fecha = document.getElementById("fecha").value;
+    var so = document.getElementById("so").value;
+    var nav = document.getElementById("nav").value;
+    var alias = document.getElementById("alias").value;
+    var todo = "fecha: " + fecha + ", so: " + so + ", nav: " + nav + ", alias: " + alias;
+
+    ws.send(todo);
+}
+function closeConnect() {
+    ws.close();
+}
+

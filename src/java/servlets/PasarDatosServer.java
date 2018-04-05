@@ -44,15 +44,13 @@ public class PasarDatosServer extends HttpServlet {
             DDBBConnection DDBB = new DDBBConnection();
             conn = DDBB.connnectDevices();
 
-            String myQueryInsertStr = "INSERT INTO devices (id,alias,so,type,navegador,Fecha,user) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String myQueryInsertStr = "INSERT INTO devices (id,alias,so,navegador,Fecha) VALUES (?, ?, ?, ?, ?)";
             myQuery = conn.prepareStatement(myQueryInsertStr);
             myQuery.setInt(1, 20);
             myQuery.setString(2, alias);
             myQuery.setString(3, so);
-            myQuery.setString(4, "tipo");
-            myQuery.setString(5, nav);
-            myQuery.setString(6, fecha);
-            myQuery.setString(7, "e@ylw.com");
+            myQuery.setString(4, nav);
+            myQuery.setString(5, fecha);
             myQuery.executeUpdate();
             //response.sendRedirect("index.jsp");
 
