@@ -24,7 +24,7 @@ export class HomePage {
       alert(msg);
       this.mensaje = msg;
     };
-
+    
     this.ws.onerror = () => {
       console.log('error occurred!');
     };
