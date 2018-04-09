@@ -44,67 +44,75 @@ public class WsChat {
     }
 
     @OnMessage
-    public void onMessage(String msg) throws ClassNotFoundException, SQLException {
+    public void onMessage(String msg) throws ClassNotFoundException, SQLException, IOException {
         String message = msg;
 
-        String[] msgDivided_1 = message.split("fecha: ", 2);
-        String[] msgDivided_2 = msgDivided_1[1].split(", so: ", 2);
-        String[] msgDivided_3 = msgDivided_2[1].split(", nav: ", 2);
-        String[] msgDivided_4 = msgDivided_3[1].split(", alias: ", 2);
+        String fecha = "";
+        String SO = "";
+        String nav = "";
+        String alias = "";
+        if (message.startsWith("fecha: ")) {
+            String[] msgDivided_1 = message.split("fecha: ", 2);
+            String[] msgDivided_2 = msgDivided_1[1].split(", so: ", 2);
+            String[] msgDivided_3 = msgDivided_2[1].split(", nav: ", 2);
+            String[] msgDivided_4 = msgDivided_3[1].split(", alias: ", 2);
 
-        int ID = 0;
-        String fecha = msgDivided_2[0];
-        String SO = msgDivided_3[0];
-        String nav = msgDivided_4[0];
-        String alias = msgDivided_4[1];
+            int ID = 0;
+            fecha = msgDivided_2[0];
+            SO = msgDivided_3[0];
+            nav = msgDivided_4[0];
+            alias = msgDivided_4[1];
 
-        Connection conn = null;
-        ResultSet register = null;
-        PreparedStatement myQuery = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            DDBBConnection DDBB = new DDBBConnection();
-            conn = DDBB.connnectDevices();
+            Connection conn = null;
+            ResultSet register = null;
+            PreparedStatement myQuery = null;
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                DDBBConnection DDBB = new DDBBConnection();
+                conn = DDBB.connnectDevices();
 
-            String myQuerySearchStr = "SELECT * FROM devices WHERE alias = ? AND so = ? AND navegador = ? AND Fecha = ?";
-            myQuery = conn.prepareStatement(myQuerySearchStr);
-            myQuery.setString(1, fecha);
-            myQuery.setString(2, SO);
-            myQuery.setString(2, nav);
-            myQuery.setString(2, alias);
-            register = myQuery.executeQuery();
-
-            if (register.absolute(1)) {
-
-            } else {
-                myQuerySearchStr = "SELECT * FROM devices";
+                String myQuerySearchStr = "SELECT * FROM devices WHERE alias = ? AND so = ? AND navegador = ? AND fecha = ?";
                 myQuery = conn.prepareStatement(myQuerySearchStr);
+                myQuery.setString(1, fecha);
+                myQuery.setString(2, SO);
+                myQuery.setString(2, nav);
+                myQuery.setString(2, alias);
                 register = myQuery.executeQuery();
 
-                register.last();
-                ID = register.getInt("id");
-                ID++;
+                if (register.absolute(1)) {
+                    ID = register.getInt("id");
+                    message = "resultado: " + "Login with Device " + alias + ", id: " + ID + ", fecha: " + fecha + ", so: " + SO + ", nav: " + nav + ", alias: " + alias;
+                } else {
+                    myQuerySearchStr = "SELECT * FROM devices";
+                    myQuery = conn.prepareStatement(myQuerySearchStr);
+                    register = myQuery.executeQuery();
 
-                String myQueryInsertStr = "INSERT INTO devices (id,alias,so,navegador,Fecha) VALUES (?, ?, ?, ?, ?)";
-                myQuery = conn.prepareStatement(myQueryInsertStr);
-                myQuery.setInt(1, ID);
-                myQuery.setString(2, alias);
-                myQuery.setString(3, SO);
-                myQuery.setString(4, nav);
-                myQuery.setString(5, fecha);
-                myQuery.executeUpdate();
+                    register.last();
+                    ID = register.getInt("id");
+                    ID++;
 
-                message = "resultado: " + "New Device registered" + ", fecha: " + fecha + ", so: " + SO + ", nav: " + nav + ", alias: " + alias;
-            }
-            System.out.println(message);
-            for (Session session : sessionList) {
-                if (userName.equals(session.getId())) {
-                    session.getBasicRemote().sendText(message);
+                    String myQueryInsertStr = "INSERT INTO devices (id,alias,so,navegador,fecha) VALUES (?, ?, ?, ?, ?)";
+                    myQuery = conn.prepareStatement(myQueryInsertStr);
+                    myQuery.setInt(1, ID);
+                    myQuery.setString(2, alias);
+                    myQuery.setString(3, SO);
+                    myQuery.setString(4, nav);
+                    myQuery.setString(5, fecha);
+                    myQuery.executeUpdate();
+
+                    message = "resultado: " + "New Device registered" + ", id: " + ID + ", fecha: " + fecha + ", so: " + SO + ", nav: " + nav + ", alias: " + alias;
+                }
+
+            } catch (Exception e) {
+                message = "resultado: " + "ERROR...Cannot register/login" + ", id: " + ID + ", fecha: " + fecha + ", so: " + SO + ", nav: " + nav + ", alias: " + alias;
+            } finally {
+                System.out.println(message);
+                for (Session session : sessionList) {
+                    if (userName.equals(session.getId())) {
+                        session.getBasicRemote().sendText(message);
+                    }
                 }
             }
-        } catch (Exception e) {
-
-        } finally {
             try {
                 // Close the result sets and statements,
                 // and the connection is returned to the pool
@@ -122,6 +130,15 @@ public class WsChat {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+        } else {
+            for (Session session : sessionList) {
+                if (userName.equals(session.getId())) {
+                    System.out.println(message);
+                    session.getBasicRemote().sendText(message);
+                } else {
+                    session.getBasicRemote().sendText(userName + ": " + message);
+                }
             }
         }
     }

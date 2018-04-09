@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tomcat WebSocket Chat</title>
+        <script src="wschat.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <textarea id="chatlog" readonly></textarea><br/>
+        <input id="msg" type="text" />
+        <button type="submit" id="sendButton" onClick="postToServer()">Send!</button>
+        <button type="submit" id="sendButton" onClick="closeConnect()">End</button>
+        <textarea id="userList" readonly></textarea><br/>
+    </body>
+</html>
