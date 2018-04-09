@@ -1,0 +1,86 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28-feb-2018, 11:07:12
+    Author     : user
+*/
+
+/*Background*/
+.corporative-Orange {
+    background-color: #d0732a !important; 
+}
+
+/*Botón login*/
+.btn {
+  margin-left: 15% !important;
+}
+/*Botón login hover*/
+.btn:hover, .btn-large:hover {
+    background-color: #9a5dab!important;
+}
+
+/*Botón google login*/
+.g-signin2 {
+    margin-left: 30% !important;
+}
+
+/*Color idiomas*/
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #000;
+}
+/*Idioma de diferente color*/
+.select-dropdown li.disabled, .select-dropdown li.disabled>span, .select-dropdown li.optgroup {
+    color: rgba(0,0,0,0.5);
+    background-color: transparent;
+}
+/*Iconos */
+.icon-color {
+    color: #7b3e8c;
+    font-size: 36px !important;
+    line-height: inherit !important; 
+}
+/*Recuperar y registrar*/
+.text-color {
+    color: #7b3e8c;
+}
+
+/*Color inputs e iconos*/
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #7b3e8c!important; }
+
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #7b3e8c!important;
+    box-shadow: 0 1px 0 0 #7b3e8c!important; }
+
+.input-field .prefix.active {
+    color: #7b3e8c!important; 
+}
+
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #7b3e8c!important;
+}
+
+

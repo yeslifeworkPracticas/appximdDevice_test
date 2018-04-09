@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 02-mar-2018, 9:56:04
+    Author     : user
+*/
+
+/*Background*/
+.corporative-Orange {
+    background-color: #d0732a !important; 
+}
+.icon-format{
+    font-size: 36px !important;
+    line-height: inherit !important; 
+}
+/*Botón login hover*/
+.btn:hover, .btn-large:hover {
+    background-color: #9a5dab!important;
+}
+
+.btn {
+    margin-left: 0% !important;
+}
+
+i {
+    color: #7b3e8c;
+}
+
+/*Color inputs e iconos*/
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #7b3e8c!important; }
+
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #7b3e8c!important;
+    box-shadow: 0 1px 0 0 #7b3e8c!important; }
+
+.input-field .prefix.active {
+    color: #7b3e8c!important; 
+}
+
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #7b3e8c!important;
+}
