@@ -9,18 +9,28 @@ export class HomePage {
   socket: any;
   clientAnswer: string;
   ws: any;
-  mensaje : string;
+  mensaje: string;
 
   constructor(public navCtrl: NavController) {
     this.mensaje = "Algo";
-    this.ws = new WebSocket("ws://192.168.1.53:8443/Server/WebSocketServer");
-    this.ws.onopen = function () {
+    this.ws = new WebSocket("ws://192.168.1.53:8080/Server/WebSocketServer", []);
 
+    this.ws.onopen = () => {
+      console.log('open');
     };
-    this.ws.onmessage = function (msg) {
-        var message = msg.data;
-        alert(message);
-        this.mensaje = message;
+
+    this.ws.onmessage = (event) => {
+      var msg = event.data;
+      alert(msg);
+      this.mensaje = msg;
+    };
+
+    this.ws.onerror = () => {
+      console.log('error occurred!');
+    };
+
+    this.ws.onclose = (event) => {
+      console.log('close code=' + event.code);
     };
   }
 
