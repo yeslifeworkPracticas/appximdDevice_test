@@ -13,7 +13,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {
     this.mensaje = "Algo";
-    this.ws = new WebSocket("ws://192.168.1.53:8084/Server/WebSocketServer", []);
+    this.ws = new WebSocket("wss://192.168.1.53:8443/Server/WebSocketServer", []);
 
     this.ws.onopen = () => {
       console.log('open');
