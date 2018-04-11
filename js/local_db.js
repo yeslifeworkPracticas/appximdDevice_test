@@ -2,29 +2,54 @@ var value;
 var db = null;
 
 
-//var ws = new WebSocket("ws://192.162.1.53:8084/Server/WebSocketServer");
-/*var ws = new WebSocket("ws://192.162.1.38:8084/WebSocketChat/wschat");
- 
- ws.onopen = function () {
- alert("Hey estoy conectado");
- };
- 
- ws.onmessage = function (message) {
- alert(message);
- open_registro();
- crearTabla();
- 
- var id;
- var fecha;
- var so;
- var nav;
- var alias;
- 
- crearRegistro(id, fecha, so, nav, alias);
- };*/
+function enviar() {
+    var fecha = document.getElementById("fecha").value;
+    var so = document.getElementById("so").value;
+    var nav = document.getElementById("nav").value;
+    var alias = document.getElementById("alias").value;
+    var todo = "fecha: " + fecha + ", so: " + so + ", nav: " + nav + ", alias: " + alias;
+    /*$.post("PasarDatosServer.java", {suggest: todo}, function (result) {
+     alert('enviado');
+     });*/
+}
+//Local Storage clave valor
+var storage = localStorage;
+var fecha, so, nav, alias;
+function guardar() {
+    fecha = document.getElementById("fecha").value;
+    so = document.getElementById("so").value;
+    nav = document.getElementById("nav").value;
+    alias = document.getElementById("alias").value;
+    alert('Valores a insertar ' + fecha + '||' + so + '||' + nav + '||' + alias);
+    storage.setItem(0, fecha);
+    storage.setItem(1, so);
+    storage.setItem(2, nav);
+    storage.setItem(3, alias);
+    for (var i = 0; i < storage.length; i++) {
+        var clave = storage.key(i);
+        var valor = storage.getItem(clave);
+        alert('Valor obtenido ' + clave + '=' + valor);
+    }
+        
+}
+function Change(){
+    //window.location.replace("index.html");
+        document.location.replace("index.html");
+}
+function mostrar_datos() {
+    for (var i = 0; i < storage.length; i++) {
+        var clave = storage.key(i);
+        var valor = storage.getItem(clave);
+       console.log('Valor obtenido ' + clave + '=' + valor);
+    }
+    document.getElementById("fecha_device").value = storage.getItem(0);
+    document.getElementById("so_device").value = storage.getItem(1);
+    document.getElementById("navegador_device").value = storage.getItem(2);
+    document.getElementById("alias_device").value = storage.getItem(3);
+}
 
 //Comprobar si BBDD Local existe o no y redireccionar al registro
-
+/*
 
 function enviar() {
     var fecha = document.getElementById("fecha").value;
@@ -70,9 +95,9 @@ function crearTabla() {
 }
 
 //Realizar insert del dispositivo
-function crearRegistro(/*id, fecha, so, nav, alias*/) {
+function crearRegistro(/*id, fecha, so, nav, alias*//*) {
     db.transaction(function (tx) {
-        tx.executeSql("insert into device values(?,?,?,?) ", /*[id, fecha, so, nav, alias]*/
+        tx.executeSql("insert into device values(?,?,?,?) ", /*[id, fecha, so, nav, alias]*//*
                 [document.querySelector("#fecha").value, document.querySelector("#so").value, document.querySelector("#nav").value, document.querySelector("#alias").value]
                 );
         document.location.replace("index.php");
@@ -100,6 +125,7 @@ function crearRegistro(/*id, fecha, so, nav, alias*/) {
  }*/
 
 //Mostrar Datos
+/*
 function mostrarDatos() {
     db.transaction(function (tx) {
         tx.executeSql("SELECT * FROM device", [], function (tx, result) {
@@ -122,5 +148,5 @@ function mostrarDatos() {
             return;
         });
     });
-}
+}*/
 
