@@ -1,18 +1,13 @@
 //This sample is how to use websocket of Tomcat7.0.52.
 //web.xml is not required. Because you can use Servlet3.0 Annotation.
-package wsapp;
+package ServerUtilities;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.json.*;
-import javax.json.spi.JsonProvider;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.Cookie;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -21,7 +16,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/WebSocketServer")
-public class WsChat {
+public class WebSocketServer {
 
     //notice:not thread-safe
     private static ArrayList<Session> sessionList = new ArrayList<Session>();
@@ -103,8 +98,9 @@ public class WsChat {
                     message = "resultado: " + "New Device registered" + ", id: " + ID + ", fecha: " + fecha + ", so: " + SO + ", nav: " + nav + ", alias: " + alias;
                 }
 
-            } catch (Exception e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 message = "resultado: " + "ERROR...Cannot register/login" + ", id: " + ID + ", fecha: " + fecha + ", so: " + SO + ", nav: " + nav + ", alias: " + alias;
+                e.getStackTrace(); 
             } finally {
                 System.out.println(message);
                 for (Session session : sessionList) {
@@ -143,3 +139,9 @@ public class WsChat {
         }
     }
 }
+
+/*
+1-Recibir los datos de cliente para loguin
+2-verificar datos en mysql y si no existen, registrar
+3-
+*/
